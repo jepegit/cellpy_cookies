@@ -18,10 +18,10 @@ if major == MIN_CELLPY_MAJOR:
 if too_old:
     print()
     print(80 * "=")
-    print("  Cellpy Cookie: OH NO!!!!")
-    print("  Cellpy Cookie: Your version of cellpy is too old - aborting!")
+    print("  Cellpy Cookie says: 'OH NO!!!!'")
+    print("  Cellpy Cookie says: 'Your version of cellpy is too old - aborting!'")
     print(80 * "=")
     print()
     sys.exit(1)
-
-print(f"setting up project in the following directory: {os.getcwd()}")
+print("   Cellpy Cookie says: 'using cookie from the cellpy_cookies repository'")
+print(f"   Cellpy Cookie says: 'setting up project in the following directory: {os.getcwd()}'")
