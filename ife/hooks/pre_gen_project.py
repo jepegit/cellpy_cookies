@@ -3,7 +3,7 @@ import sys
 
 
 MIN_CELLPY_MAJOR, MIN_CELLPY_MINOR = 0, 5
-cellpy_version = '{{ cookiecutter.cellpy_version }}'
+cellpy_version = "{{ cookiecutter.cellpy_version }}"
 major, minor = cellpy_version.split(".")[:2]
 major, minor = int(major), int(minor)
 too_old = False
