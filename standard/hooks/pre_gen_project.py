@@ -2,7 +2,7 @@ import os
 import sys
 
 
-MIN_CELLPY_MAJOR, MIN_CELLPY_MINOR = 0, 5
+MIN_CELLPY_MAJOR, MIN_CELLPY_MINOR = 1, 0
 cellpy_version = "{{ cookiecutter.cellpy_version }}"
 major, minor = cellpy_version.split(".")[:2]
 major, minor = int(major), int(minor)
@@ -14,6 +14,24 @@ if major < MIN_CELLPY_MAJOR:
 if major == MIN_CELLPY_MAJOR:
     if minor < MIN_CELLPY_MINOR:
         too_old = True
+
+# additional test for patch version since v.1.0.0 -> v.1.0.1 introduced a new batch method.
+if major == MIN_CELLPY_MAJOR and minor == MIN_CELLPY_MINOR:
+    patch = cellpy_version.split(".")[3]
+    if patch.startswith("0"):
+        print()
+        print(80 * "=")
+        print("  Cellpy Cookie says: 'OH NO!!!!'")
+        print("  Cellpy Cookie says: 'Your version of cellpy is too old - aborting!'")
+        print("  Cellpy Cookie says: 'Please update cellpy to the latest version'")
+        print("    $ python -m pip install cellpy --upgrade")
+        print("  Cellpy Cookie says: 'or use the cookie standard_1_0_0 instead!'")
+        print("    $ cellpy new --template starndard_1_0_0")
+
+        print(80 * "=")
+        sys.exit(1)
+
+# end of additional test
 
 if too_old:
     print()
