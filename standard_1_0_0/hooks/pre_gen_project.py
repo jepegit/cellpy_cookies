@@ -3,10 +3,23 @@ import sys
 
 
 MIN_CELLPY_MAJOR, MIN_CELLPY_MINOR = 0, 5
+MAX_CELLPY_MAJOR = 1
 cellpy_version = "{{ cookiecutter.cellpy_version }}"
 major, minor = cellpy_version.split(".")[:2]
 major, minor = int(major), int(minor)
 too_old = False
+
+if major > MAX_CELLPY_MAJOR:
+    print()
+    print(80 * "=")
+    print("  Cellpy Cookie says: 'OH NO!!!!'")
+    print("  Cellpy Cookie says: 'This cookie is for cellpy 1.x only - aborting!'")
+    print(f"  Cellpy Cookie says: 'you are running cellpy {cellpy_version}'")
+    print("  Cellpy Cookie says: 'use the standard cookie instead!'")
+    print("    $ cellpy new --template standard")
+    print(80 * "=")
+    print()
+    sys.exit(1)
 
 if major < MIN_CELLPY_MAJOR:
     too_old = True

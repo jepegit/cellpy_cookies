@@ -2,7 +2,7 @@ import os
 import sys
 
 
-MIN_CELLPY_MAJOR, MIN_CELLPY_MINOR = 1, 0
+MIN_CELLPY_MAJOR, MIN_CELLPY_MINOR = 2, 1
 cellpy_version = "{{ cookiecutter.cellpy_version }}"
 major, minor = cellpy_version.split(".")[:2]
 major, minor = int(major), int(minor)
@@ -15,35 +15,22 @@ if major == MIN_CELLPY_MAJOR:
     if minor < MIN_CELLPY_MINOR:
         too_old = True
 
-# additional test for patch version since v.1.0.0 -> v.1.0.1 introduced a new batch method.
-if major == MIN_CELLPY_MAJOR and minor == MIN_CELLPY_MINOR:
-    patch = cellpy_version.split(".")[2]
-    if patch.startswith("0"):
-        print()
-        print(" ERROR ".center(80, "="))
-        print()
-        print("  Cellpy Cookie says: 'OH NO!!!!'")
-        print("  Cellpy Cookie says: 'Your version of cellpy is too old - aborting!'")
-        print("  Cellpy Cookie says: 'Please update cellpy to the latest version'")
-        print()
-        print("    $ python -m pip install cellpy --upgrade")
-        print()
-        print("  Cellpy Cookie says: 'or use the cookie standard_1_0_0 instead!'")
-        print()
-        print("    $ cellpy new --template starndard_1_0_0")
-        print()
-        print(80 * "=")
-        print()
-        sys.exit(1)
-
-# end of additional test
-
 if too_old:
     print()
     print(" ERROR ".center(80, "="))
     print()
     print("  Cellpy Cookie says: 'OH NO!!!!'")
     print("  Cellpy Cookie says: 'Your version of cellpy is too old - aborting!'")
+    print(f"  Cellpy Cookie says: 'this cookie needs cellpy >= {MIN_CELLPY_MAJOR}.{MIN_CELLPY_MINOR},")
+    print(f"                       you are running cellpy {cellpy_version}'")
+    print()
+    print("  Cellpy Cookie says: 'either update cellpy'")
+    print()
+    print("    $ python -m pip install cellpy --upgrade")
+    print()
+    print("  Cellpy Cookie says: 'or use the cookie for cellpy 1.x instead!'")
+    print()
+    print("    $ cookiecutter gh:jepegit/cellpy_cookies --directory standard_1_x")
     print()
     print(80 * "=")
     print()
